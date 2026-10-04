@@ -1,48 +1,109 @@
-<div align="center">
+# 🚗 Geeso Locadora
 
-# 🚗 Mateus Motors - Sistema de Aluguel de Carros
+Aplicação web simples, feita com [Streamlit](https://streamlit.io/), para calcular o valor total do aluguel de um carro com base no modelo escolhido, na quantidade de dias e nos quilômetros rodados.
 
-### 💰 Projeto: Calculadora de Custos de Aluguel de Veículos
+## 📋 Funcionalidades
 
-[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io)
+- Seleção do modelo do carro na barra lateral
+- Exibição da imagem do carro escolhido
+- Entrada da quantidade de dias de aluguel
+- Entrada da quilometragem rodada
+- Cálculo automático do valor total a pagar
 
-*Desenvolva um sistema simples para calcular o valor do aluguel de carros!*
+## 🚘 Modelos e valores
 
-</div>
+| Modelo        | Diária (R$) |
+|---------------|-------------|
+| BMW X5        | 750,00      |
+| Audi R8       | 900,00      |
+| Ford Mustang  | 800,00      |
+| VW Polo       | 650,00      |
+| Fiat Toro     | 700,00      |
 
----
+**Taxa por quilômetro rodado:** R$ 0,15
 
-## 📋 Descrição do Projeto
+## 🧮 Como o valor é calculado
 
-Você foi contratado pela **Mateus Motors** para criar um sistema que calcule automaticamente o valor total do aluguel de um carro basedo no modelo do veículo, dias de uso e quilometragem rodada.
+```
+total_dias    = dias × diária
+total_km      = km × 0,15
+aluguel_total = total_dias + total_km
+```
 
-Seu objetivo é criar uma aplicação web usando **Streamlit** com:
-- Uma sidebar para seleção do carro
-- Campos para entrada de dias e quilometragem
-- Cálculo automático do valor total
-- Exibição do resultado formatado
+**Exemplo:** Fiat Toro por 3 dias, rodando 200 km:
 
----
+- 3 × 700 = R$ 2.100,00
+- 200 × 0,15 = R$ 30,00
+- **Total: R$ 2.130,00**
 
-## 🎯 Requisitos do Projeto
+## ⚙️ Pré-requisitos
 
-### 🔧 Funcionalidades Obrigatórias
-- [ ] **Sidebar com logo**: Exibir a imagem "logo.png" e o título "Mateus Motors"
-- [ ] **Seleção de carro**: Dropdown com 5 modelos de carros
-- [ ] **Campos de entrada**: Para dias alugados e quilometragem rodada
-- [ ] **Cálculo automático**: Calcular valor basedo na diária + km rodado
-- [ ] **Botão de calcular**: Executar o cálculo quando clicado
-- [ ] **Exibição do resultado**: Mostrar o valor total formatado
+- Python 3.8 ou superior
+- Streamlit
 
-### 💰 Tabela de Preços
-| Carro     | Diária (R$) | Preço por km (R$) |
-|-----------|------------|------------------|
-| BMW       | 450        | 0.15             |
-| Mustang   | 500        | 0.15             |
-| Porsche   | 300        | 0.15             |
-| Fusca     | 250        | 0.15             |
-| Toro      | 550        | 0.15             |
+## 📦 Instalação
 
----
+1. Clone ou baixe este repositório.
+2. (Opcional) Crie e ative um ambiente virtual:
 
+```bash
+python -m venv venv
+source venv/bin/activate      # Linux/macOS
+venv\Scripts\activate         # Windows
+```
+
+3. Instale a dependência:
+
+```bash
+pip install streamlit
+```
+
+## 🗂️ Estrutura de arquivos
+
+As imagens precisam estar **na mesma pasta** do arquivo Python, com os nomes exatamente iguais aos modelos:
+
+```
+geeso-locadora/
+├── app.py
+├── logo.png
+├── BMW X5.png
+├── Audi R8.png
+├── Ford Mustang.png
+├── VW Polo.png
+├── Fiat Toro.png
+└── README.md
+```
+
+> O nome do arquivo Python (`app.py`) pode ser alterado; basta usar o mesmo nome ao executar.
+
+## ▶️ Como executar
+
+```bash
+streamlit run app.py
+```
+
+O navegador abrirá automaticamente em `http://localhost:8501`.
+
+## 🖱️ Como usar
+
+1. Escolha o carro na barra lateral.
+2. Informe por quantos dias ele foi alugado.
+3. Informe quantos km foram rodados.
+4. Clique em **Calcular** para ver o valor total.
+
+## ⚠️ Observações
+
+- Os campos de dias e km devem ser preenchidos com números. Dias deve ser um número inteiro (ex.: `3`) e km pode ter casas decimais usando ponto (ex.: `150.5`).
+- Se os campos estiverem vazios ou com texto, o aplicativo exibirá um erro ao clicar em **Calcular**. Uma melhoria futura é validar essas entradas.
+- Se alguma imagem não for encontrada, o Streamlit exibirá um erro de arquivo.
+
+## 💡 Ideias de melhorias
+
+- Validar as entradas com `try/except` ou usar `st.number_input`
+- Armazenar as diárias em um dicionário no lugar do `if/elif`
+- Permitir cadastro de novos modelos
+- Gerar um recibo do aluguel em PDF
+
+## 📄 Licença
+
+Projeto de uso livre para fins de estudo.
